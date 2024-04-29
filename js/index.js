@@ -1,15 +1,16 @@
 // Fetch albums based on a search query
-async function fetchAlbums(query) {
+async function fetchAlbums() {
+    const url = 'https://api.mockaroo.com/api/5cd5a660?count=100&key=0ec9ce50';
     try {
-        // Replace 'your-api-url' with the actual URL from your mock API
-        const response = await fetch(`https://your-api-url/albums?name_like=${query}`);
+        const response = await fetch(url);
         const albums = await response.json();
-        displaySearchResults(albums);
+        console.log(albums);  // Display the fetched data in the console
+        displayAlbums(albums); // Function to display albums on the web page
     } catch (error) {
-        console.error('Error fetching albums:', error);
-        alert('Failed to fetch albums.');
+        console.error('Failed to fetch albums:', error);
     }
 }
+
 
 // Display search results
 function displaySearchResults(albums) {
@@ -31,8 +32,7 @@ function displaySearchResults(albums) {
 // Add an album to favorites
 async function addToFavorites(albumId) {
     try {
-        // Replace 'your-api-url' with the actual URL from your mock API
-        await fetch(`https://your-api-url/favorites`, {
+        await fetch(`https://api.mockaroo.com/api/ee3bb9e0?count=100&key=0ec9ce50`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -64,13 +64,10 @@ document.getElementById('favorites-button').addEventListener('click', () => {
     document.getElementById('search-tab').classList.add('d-none');
 });
 
-// Initial fetch to populate favorites (optional)
 async function fetchFavorites() {
     try {
-        // Replace 'your-api-url' with the actual URL from your mock API
-        const response = await fetch(`https://your-api-url/favorites`);
+        const response = await fetch(`https://api.mockaroo.com/api/ee3bb9e0?count=100&key=0ec9ce50`);
         const favorites = await response.json();
-        // Assuming you want to populate some part of the page with these favorites
     } catch (error) {
         console.error('Error fetching favorites:', error);
     }
